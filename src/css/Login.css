@@ -1,0 +1,203 @@
+/* Page entrance animation */
+.login-container {
+    background-color: #000;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 130px 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    animation: fadeInPage 0.8s ease-in-out;
+}
+
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main container animation */
+.login-wrapper-middle {
+    width: 550px;
+    height: 700px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo animation */
+.logo-bg {
+    width: auto;
+    height: 60px;
+    animation: bounceIn 0.8s ease-out 0.4s both;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Title animation */
+.Sign_in_to_X {
+    color: white;
+    width: 350px;
+    margin-top: 50px;
+    animation: fadeInLeft 0.6s ease-out 0.6s both;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Buttons animation */
+.Signup-buttons {
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  width: 350px;
+  padding: 10px 0;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeInLeft 0.6s ease-out 0.6s both;
+
+}
+
+/* Hover effect for filled buttons */
+.hover-scale:hover {
+  background-color: #d9d9d9;
+  transform: scale(1.05);
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Divider animation */
+.or_divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    gap: 10px;
+    color: #71767b;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 10px 0;
+    animation: fadeIn 0.5s ease-out 1s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.or_divider hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background-color: #2f3336;
+}
+
+/* Input field animation */
+.Phone_email_or_username {
+    width: 340px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #2f3336;
+    background-color: #000;
+    color: white;
+    font-size: 17px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease-out 1.2s both;
+}
+
+/* Second button animation */
+.Signup-buttons-2 {
+    background-color: transparent;
+    outline: 1px solid white;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    width: 350px;
+    padding: 10px 0;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease-out 1.4s both;
+}
+
+/* Footer text animation */
+.Dont_have_an_account {
+    color: #71767B;
+    margin-top: 40px;
+    width: 350px;
+    animation: fadeIn 0.5s ease-out 1.6s both;
+}
+
+/* Hover effects remain exactly the same as original */
+.hover-scale:hover {
+    background-color: #d9d9d9;
+    transform: scale(1.05);
+}
+
+.hover-outline:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1.05);
+}
