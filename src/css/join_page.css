@@ -1,0 +1,231 @@
+/* 🌑 Main Page Container */
+.join-page-container {
+  background-color: #000;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* 🔹 Split layout: Left (Logo) & Right (Buttons) */
+.join-page-container-top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
+
+/* 🔹 Left Section (Logo) */
+.join-page-container-top-left {
+  display: flex;
+  align-items: center;
+}
+
+.join-page-container-top-left-img {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  transition: transform 0.8s ease-in-out;
+}
+
+/* 🔹 Right Section (Text & Buttons) */
+.join-page-container-top-right {
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* 🔹 Main Titles */
+.Happening_now_text {
+  color: white;
+  font-size: 65px;
+  font-weight: 900;
+  text-align: left;
+}
+
+.Join_today_text {
+  color: white;
+  font-size: 30px;
+  font-weight: 900;
+  margin-top: 30px;
+  text-align: left;
+}
+
+/* 🔹 Buttons */
+.Signup-buttons {
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  width: 300px;
+  padding: 10px 0;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for filled buttons */
+.hover-scale:hover {
+  background-color: #d9d9d9;
+  transform: scale(1.05);
+}
+
+/* 🔹 Outline Buttons */
+.Signup-buttons-2 {
+  background-color: transparent;
+  outline: 1px solid white;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  width: 300px;
+  padding: 10px 0;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover for outline buttons */
+.hover-outline:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* 🔹 OR Divider */
+.or_divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  gap: 10px;
+  color: #71767b;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.or_divider hr {
+  flex: 1;
+  border: none;
+  height: 1px;
+  background-color: #2f3336;
+}
+
+/* 🔹 Terms and Links */
+.terms-service {
+  font-size: 12px;
+  width: 65%;
+  margin-top: 10px;
+  color: #71767b;
+}
+
+.link-text {
+  color: #1d9bf0;
+  cursor: pointer;
+}
+
+.link-text:hover {
+  text-decoration: underline;
+}
+
+/* 🔹 Already have account text */
+.Already-have-an-account-text {
+  margin-top: 20px;
+  color: white;
+}
+
+/* 🔹 Footer */
+
+/* 🔹 Simple entrance animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Apply animations */
+.fade-in { animation: fadeInUp 1s ease forwards; }
+.slide-in-left { animation: slideInLeft 1s ease forwards; }
+.slide-in-right { animation: slideInRight 1s ease forwards; }
+.fade-up { animation: fadeInUp 1s ease forwards; }
+.fade-up-delay { animation: fadeInUp 1.2s ease forwards; }
+
+.footer_home {
+  text-align: center;
+  color: #71767b;
+  font-size: 13px;
+  padding: 20px;
+  width: 100%;
+}
+
+/* 🔹 Responsive for smaller screens */
+@media (max-width: 900px) {
+  .join-page-container-top {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .join-page-container-top-left-img {
+    max-width: 60px;
+  }
+
+  .join-page-container-top-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .Happening_now_text {
+    font-size: 35px;
+  }
+
+  .Join_today_text {
+    font-size: 22px;
+  }
+
+  .Signup-buttons,
+  .Signup-buttons-2 {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .or_divider {
+    width: 90%;
+    max-width: 400px;
+    font-size: 13px;
+  }
+
+  .terms-service {
+    width: 80%;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .footer_home {
+    font-size: 11px;
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+}
