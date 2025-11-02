@@ -4,6 +4,8 @@ import logo from '../assets/Logo-removed-bg.png';
 import GoogleIcon from "../assets/GoogleIcon";
 import AppleIcon from '../assets/AppleIcon';
 import GrokIcon from '../assets/GrokIcon';
+import { Link } from "react-router-dom";
+
 
 const Join_today = () => {
   return (
@@ -56,7 +58,7 @@ const Join_today = () => {
             <h3 className='Already-have-an-account-text fade-up'>Already have an account?</h3>
 
             {/* 🔹 Sign in + Grok buttons */}
-            <div className="Signup-buttons-2 hover-outline">Sign in</div>
+            <Link to="/login" className="Signup-buttons-2 hover-outline" style={{ textDecoration: "none"}}>Sign in</Link>
             <div className="Signup-buttons-2 hover-outline">
               <GrokIcon size={17}/> Get Grok
             </div>
