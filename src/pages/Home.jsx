@@ -86,7 +86,7 @@ const Home = () => {
             >
               <MenuIcon size={20} />
             </button>
-            <h1>Dashboard</h1>
+            <h1>X-Space</h1>
           </div>
 
           <div className="Header-right">
