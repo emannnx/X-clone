@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import '../css/home.css';
+import React, { useState, useEffect } from "react";
+import "../css/home.css";
 import {
   Home as HomeIcon,
   Bell as NotificationsIcon,
@@ -18,35 +18,54 @@ import {
   Menu as MenuIcon,
   X as CloseIcon,
 } from "lucide-react";
-import GrokIcon from '../assets/GrokIcon'; // keep if used elsewhere
+import GrokIcon from "../assets/GrokIcon";
 
 const Home = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // Close menu on Esc or on window resize > 1250 (so UI resets)
+  // Example dropdown suggestions
+  const suggestions = [
+    "React",
+    "Firebase",
+    "Tailwind",
+    "Lucide Icons",
+    "JavaScript",
+    "Node.js",
+    "MongoDB",
+  ];
+
+  const filteredSuggestions = suggestions.filter((s) =>
+    s.toLowerCase().includes(query.toLowerCase())
+  );
+
   useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
     const onKey = (e) => {
-      if (e.key === 'Escape') setMenuOpen(false);
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setIsExpanded(false);
+      }
     };
-    const onResize = () => {
-      if (window.innerWidth > 1250) setMenuOpen(false);
-    };
-    window.addEventListener('keydown', onKey);
-    window.addEventListener('resize', onResize);
+
+    window.addEventListener("keydown", onKey);
+
     return () => {
-      window.removeEventListener('keydown', onKey);
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", onKey);
     };
   }, []);
 
   return (
-    <div className='Home-container'>
+    <div className="Home-container">
       <div className="Home-wrapper">
-
         {/* Header */}
         <div className="Header-container">
           <div className="Header-left">
-            {/* menu button - visible on narrow screens (see CSS @ <=1250px) */}
             <button
               className="header-menu-btn"
               onClick={() => setMenuOpen(true)}
@@ -54,43 +73,150 @@ const Home = () => {
             >
               <MenuIcon size={20} />
             </button>
-
             <h1>Dashboard</h1>
           </div>
 
           <div className="Header-right">
-            <div className="search-bar">
-              <SearchIcon size={20} className="search-icon" />
-              <input type="text" placeholder="Search" className="search-input" />
-            </div>
+            {windowWidth > 444 ? (
+              <div className="search-bar">
+                <SearchIcon size={20} className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="search-input"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                {query && (
+                  <div className="search-dropdown">
+                    {filteredSuggestions.length > 0 ? (
+                      filteredSuggestions.map((item, i) => (
+                        <div
+                          key={i}
+                          className="dropdown-item"
+                          onClick={() => setQuery(item)}
+                        >
+                          {item}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="dropdown-item no-result">
+                        No results found
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                {!isExpanded ? (
+                  <button
+                    className="search-icon-btn"
+                    onClick={() => setIsExpanded(true)}
+                  >
+                    <SearchIcon size={22} />
+                  </button>
+                ) : (
+                  <div className="search-bar mobile">
+                    <SearchIcon size={20} className="search-icon" />
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="search-input"
+                      autoFocus
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                    />
+                    <button
+                      className="close-search"
+                      onClick={() => {
+                        setQuery("");
+                        setIsExpanded(false);
+                      }}
+                    >
+                      <CloseIcon size={20} />
+                    </button>
+
+                    {query && (
+                      <div className="search-dropdown">
+                        {filteredSuggestions.length > 0 ? (
+                          filteredSuggestions.map((item, i) => (
+                            <div
+                              key={i}
+                              className="dropdown-item"
+                              onClick={() => setQuery(item)}
+                            >
+                              {item}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="dropdown-item no-result">
+                            No results found
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
 
-        {/* Overlay for slide-in menu when open on mobile */}
-        {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)} aria-hidden />}
+        {menuOpen && (
+          <div
+            className="menu-overlay"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden
+          />
+        )}
 
         <div className="Content-container">
-          {/* LEFT PANEL (becomes slide-in on small screens) */}
-          <div className={`left-pannel ${menuOpen ? 'open' : ''}`} role="navigation" aria-label="Main menu">
-            <div className='left-pannel-upper'>
-              <div className='left-pannel-upper-selection'><HomeIcon strokeWidth={3} /><span>Home</span></div>
-              <div className='left-pannel-upper-selection'><SearchIcon strokeWidth={3} /><span>Explore</span></div>
-              <div className='left-pannel-upper-selection'><NotificationsIcon strokeWidth={3} /><span>Notifications</span></div>
-              <div className='left-pannel-upper-selection'><MessagesIcon strokeWidth={3} /><span>Messages</span></div>
-              <div className='left-pannel-upper-selection'><BookmarkIcon strokeWidth={3} /><span>Bookmarks</span></div>
-              <div className='left-pannel-upper-selection'><UserIcon strokeWidth={3} /><span>Communities</span></div>
-              <div className='left-pannel-upper-selection'><PremiumIcon strokeWidth={3} /><span>Premium</span></div>
-              <div className='left-pannel-upper-selection'><ProfileIcon strokeWidth={3} /><span>Profile</span></div>
-              <div className='left-pannel-upper-selection'><MoreOptionsIcon strokeWidth={3} /><span>More</span></div>
-               <button className="compose-btn">Post</button>
+          <div
+            className={`left-pannel ${menuOpen ? "open" : ""}`}
+            role="navigation"
+            aria-label="Main menu"
+          >
+            <div className="left-pannel-upper">
+              <div className="left-pannel-upper-selection">
+                <HomeIcon strokeWidth={3} />
+                <span>Home</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <SearchIcon strokeWidth={3} />
+                <span>Explore</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <NotificationsIcon strokeWidth={3} />
+                <span>Notifications</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <MessagesIcon strokeWidth={3} />
+                <span>Messages</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <BookmarkIcon strokeWidth={3} />
+                <span>Bookmarks</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <UserIcon strokeWidth={3} />
+                <span>Communities</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <PremiumIcon strokeWidth={3} />
+                <span>Premium</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <ProfileIcon strokeWidth={3} />
+                <span>Profile</span>
+              </div>
+              <div className="left-pannel-upper-selection">
+                <MoreOptionsIcon strokeWidth={3} />
+                <span>More</span>
+              </div>
+              <button className="compose-btn">Post</button>
             </div>
 
-            <div className='left-pannel-lower'>
-              {/* Lower area (e.g., post button / user) */}
-             
-            </div>
-
-            {/* Close button inside slide menu for mobile */}
             <button
               className="left-panel-close-btn"
               onClick={() => setMenuOpen(false)}
@@ -100,18 +226,14 @@ const Home = () => {
             </button>
           </div>
 
-          {/* MAIN CONTENT (placeholder columns) */}
           <div className="main-column">
-            {/* you can place feed, composer, etc. here */}
             <div style={{ padding: 20 }}>
               <h2>Main Content</h2>
               <p>Put your feed, composer and tweets here.</p>
             </div>
           </div>
 
-          <div className="right-column">
-            {/* Right column / widgets */}
-          </div>
+          <div className="right-column"></div>
         </div>
       </div>
     </div>
