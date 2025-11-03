@@ -162,7 +162,33 @@
 .left-pannel-upper-selection:hover { background: #151515; transform: translateX(4px); }
 
 /* lower area */
-.left-pannel-lower { padding: 12px; display:flex; justify-content:center; align-items:center; }
+.left-pannel-lower {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #16181c;
+  padding: 10px 15px;
+  border-radius: 50px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.left-pannel-lower:hover {
+  background-color: #1d1f23;
+}
+
+.left-pannel-lower .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #202327;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: #fff;
+  flex-shrink: 0;
+}
 .compose-btn {
   background: #1d9bf0;
   color: #fff;
@@ -204,6 +230,49 @@
   padding: 6px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #fff;
+  font-size: 15px;
+}
+
+.user-handle {
+  color: #71767b;
+  font-size: 14px;
+}
+
+.more-icon {
+  color: #fff;
+  margin-left: 8px;
+}
+
+@media (max-width: 600px) {
+  .left-pannel-lower {
+    border-radius: 50px;
+    padding: 8px 10px;
+  }
+
+  .user-name {
+    font-size: 14px;
+  }
+
+  .user-handle {
+    font-size: 13px;
+  }
+
+  .left-pannel-lower .image {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* main + right columns */
