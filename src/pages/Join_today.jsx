@@ -42,9 +42,9 @@ const Join_today = () => {
             </div>
 
             {/* 🔹 Create account */}
-            <div className="Signup-buttons hover-scale" style={{ fontWeight: 'bold' }}>
+            <Link to="/signup" className="Signup-buttons hover-scale" style={{ fontWeight: 'bold', textDecoration: 'none' }}>
               Create account
-            </div>
+            </Link>
 
             {/* 🔹 Terms text */}
             <div className='terms-service'>
