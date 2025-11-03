@@ -17,14 +17,27 @@ import {
   MoreHorizontal as MoreOptionsIcon,
   Menu as MenuIcon,
   X as CloseIcon,
+  User,
 } from "lucide-react";
 import GrokIcon from "../assets/GrokIcon";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [user, setUser] = useState(null);
+
+  // Listen for Firebase Auth user
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   // Example dropdown suggestions
   const suggestions = [
@@ -215,6 +228,23 @@ const Home = () => {
                 <span>More</span>
               </div>
               <button className="compose-btn">Post</button>
+              
+            <div className="left-pannel-lower">
+              <div className="image">
+                <UserIcon size={20} />
+              </div>
+
+              <div className="user-info">
+                <span className="user-name">
+                  {user?.displayName || "User"}
+                </span>
+                <span className="user-handle">
+                  @{user?.email ? user.email.split("@")[0] : "username"}
+                </span>
+              </div>
+
+              <MoreHorizontal size={20} className="more-icon" />
+            </div>
             </div>
 
             <button
