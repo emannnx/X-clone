@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "emoji-picker-react": "^4.15.0",
     "firebase": "^12.5.0",
     "lucide-react": "^0.552.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^7.9.5"
   },
   "devDependencies": {
