@@ -1,9 +1,9 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAtZPaNDCeRMPwwWhAidcGVNbn8zQKEffI",
   authDomain: "x-space-a2903.firebaseapp.com",
@@ -14,9 +14,19 @@ const firebaseConfig = {
   measurementId: "G-YVMJ1JJE0W"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 const analytics = getAnalytics(app);
 
-export { app, auth, analytics };
+// Enable offline persistence
+enableIndexedDbPersistence(db)
+  .then(() => {
+    console.log("Firebase persistence enabled");
+  })
+  .catch((err) => {
+    console.log("Firebase persistence error:", err);
+  });
+
+export { app, auth, db, storage, analytics };
